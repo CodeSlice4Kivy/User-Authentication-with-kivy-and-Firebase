@@ -1,0 +1,88 @@
+# ---------------------------
+# Define the layout for LoginScreen
+# ---------------------------
+<LoginScreen>:
+    # The root widget inside this screen is a BoxLayout (arranges widgets vertically or horizontally)
+    BoxLayout:
+        orientation: 'vertical'    # Widgets will be stacked vertically (top to bottom)
+        spacing: dp(10)            # Adds space of 10 density-independent pixels between widgets
+        padding: dp(20)            # Adds padding of 20 dp around the edges of the layout
+
+        # A label to display the title of the screen
+        Label:
+            text: "Login"          # Text shown on the label
+            font_size: '24sp'      # Font size in scalable pixels (sp)
+
+        # TextInput for entering email
+        TextInput:
+            id: email              # Assign an id so it can be accessed in Python via self.ids.email
+            hint_text: "Email"     # Placeholder text shown when the field is empty
+
+        # TextInput for entering password
+        TextInput:
+            id: password           # Assign id to reference in Python
+            hint_text: "Password"  # Placeholder text
+            password: True         # Masks the input so it looks like a password field
+
+        # Button for logging in
+        Button:
+            text: "Login"                      # Button text
+            on_release: root.do_login()        # When button is released, call the do_login() method in LoginScreen class
+
+        # Button to navigate to the Signup screen
+        Button:
+            text: "Go to Sign Up"              # Button text
+            on_release: app.root.current = 'signup'  # Change the current screen of the ScreenManager to 'signup'
+
+
+# ---------------------------
+# Define the layout for SignupScreen
+# ---------------------------
+<SignupScreen>:
+    BoxLayout:
+        orientation: 'vertical'    # Stack widgets vertically
+        spacing: dp(10)            # Space between widgets
+        padding: dp(20)            # Padding around the layout
+
+        # Screen title
+        Label:
+            text: "Sign Up"
+            font_size: '24sp'
+
+        # TextInput for email
+        TextInput:
+            id: email
+            hint_text: "Email"
+
+        # TextInput for password
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True          # Mask password input
+
+        # Button to create a new account
+        Button:
+            text: "Create Account"
+            on_release: root.do_signup()  # Call the do_signup() method in SignupScreen class
+
+        # Button to navigate back to Login screen
+        Button:
+            text: "Back to Login"
+            on_release: app.root.current = 'login'  # Switch ScreenManager to 'login'
+
+
+# ---------------------------
+# Define the layout for ChatScreen
+# ---------------------------
+<ChatScreen>:
+    BoxLayout:
+        orientation: 'vertical'   # Stack elements vertically
+
+        # Display a welcome message
+        Label:
+            text: "Welcome to Chat"
+
+        # Button to log out and return to Login screen
+        Button:
+            text: "Logout"
+            on_release: app.root.current = 'login'  # Switch ScreenManager to 'login'
